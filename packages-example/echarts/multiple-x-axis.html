@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .box {
+            display: inline-block;
+            padding: 20px;
+            background-color: #0a1b25;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            background-color: #0a1b25;
+            width: 500px;
+            height: 224px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: #00FFFF;">title</h1>
+    <div class="box">
+        <div class="container" id="container"></div>
+    </div>
+
+
+    <script type="text/javascript"
+        src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+
+
+    <script type="text/javascript">
+        var dom = document.getElementById('container');
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        var app = {};
+
+        const value = [
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 11:01:28",
+                "id": "1803624176516034561",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 11:01:28",
+                "id": "1803624176641339394",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 11:31:28",
+                "id": "1803631725298544642",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 11:31:28",
+                "id": "1803631725415460866",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 12:01:28",
+                "id": "1803639276416757762",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 12:31:28",
+                "id": "1803646826235260929",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 13:01:28",
+                "id": "1803654374317322242",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 13:31:28",
+                "id": "1803661924689473537",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 14:01:28",
+                "id": "1803669474298261505",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 14:31:28",
+                "id": "1803677024204845057",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 14:31:28",
+                "id": "1803677024616321025",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 15:01:28",
+                "id": "1803684576204386306",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 15:01:29",
+                "id": "1803684576603279361",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 15:31:28",
+                "id": "1803692125322440706",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 15:31:28",
+                "id": "1803692125775859714",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 16:01:28",
+                "id": "1803699675342270466",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.22
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 16:01:28",
+                "id": "1803699675753746434",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.22
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 16:31:28",
+                "id": "1803707223394971649",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 16:31:28",
+                "id": "1803707223819030529",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 17:01:28",
+                "id": "1803714774337548290",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.22
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 17:31:28",
+                "id": "1803722323925364737",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 17:31:28",
+                "id": "1803722324303384577",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 18:01:28",
+                "id": "1803729873613844482",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 18:01:28",
+                "id": "1803729873928949762",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 18:31:29",
+                "id": "1803737424636112898",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 18:31:29",
+                "id": "1803737424930205697",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 19:01:28",
+                "id": "1803744973540257794",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 19:31:28",
+                "id": "1803752523618807810",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 20:01:29",
+                "id": "1803760074578161666",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 20:31:29",
+                "id": "1803767623612329985",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 21:01:29",
+                "id": "1803775173426638849",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 5.43
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 21:31:29",
+                "id": "1803782725287768066",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 22:01:29",
+                "id": "1803790276087738370",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 5.43
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 22:31:29",
+                "id": "1803797824522121218",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 23:01:29",
+                "id": "1803805373900222465",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-20 23:31:29",
+                "id": "1803812924440145921",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 00:01:29",
+                "id": "1803820475458220033",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 00:31:29",
+                "id": "1803828024416890882",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 01:01:29",
+                "id": "1803835574646435841",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 01:31:29",
+                "id": "1803843124603351042",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 02:01:30",
+                "id": "1803850675432681474",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 02:31:29",
+                "id": "1803858224643010561",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 03:01:30",
+                "id": "1803865776466391041",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 03:31:30",
+                "id": "1803873325240512513",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 04:01:30",
+                "id": "1803880874966740993",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 04:31:30",
+                "id": "1803888424592306178",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 05:01:30",
+                "id": "1803895975643934721",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 05:31:30",
+                "id": "1803903524598411266",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 06:01:30",
+                "id": "1803911074513383426",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 06:31:30",
+                "id": "1803918624285749249",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 07:01:30",
+                "id": "1803926175526121473",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 07:31:30",
+                "id": "1803933724568678402",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.23
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 08:01:30",
+                "id": "1803941274907275266",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 08:31:31",
+                "id": "1803948826650963969",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 09:01:31",
+                "id": "1803956377295745026",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.05
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 09:31:31",
+                "id": "1803963925566550017",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 7.06
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 10:01:31",
+                "id": "1803971477859692546",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 13
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 10:31:30",
+                "id": "1803979024222089217",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 11.2
+            },
+            {
+                "code": "WL-QH-E",
+                "createTime": "2024-06-21 10:31:30",
+                "id": "1803979024222089217",
+                "name": "秦虹东",
+                "state": "",
+                "stateText": "",
+                "sw": 10.5
+            }
+        ];
+        const maxValue = Math.max(...value.map(v => v.sw));
+        const deviceInfo = {
+            "address": "",
+            "code": "WL-QH-E",
+            "id": "7",
+            "latitude": 32.01598,
+            "level1": 11.909,
+            "level2": 11.509,
+            "level3": 11.109,
+            "level4": 10.309,
+            "longitude": 118.79149,
+            "name": "秦虹东",
+            "type": 1
+        }
+        const levelColor = [
+            { name: "水位正常", color: "#04FFD3" },
+            { name: "四级预警", color: "#00A2E8" },
+            { name: "三级预警", color: "#FFF200" },
+            { name: "二级预警", color: "#FF7F27" },
+            { name: "一级预警", color: "#D31D1D" },
+        ];
+        const level = Object.keys(deviceInfo).filter(v => /^level(\d+)$/.test(v)).sort((a, b) => {
+            return Number(b.replace(/level/, "")) - Number(a.replace(/level/, ""))
+        }).map((v, i) => {
+            const { color, name } = (levelColor[i + 1] || {});
+            return {
+                // key: v,
+                // value: deviceInfo[v],
+                // color: levelColor[i]
+                name,
+                type: 'line',
+                data: value.map(() => deviceInfo[v]),
+                symbol: "none",
+                showSymbol: false,
+                cursor: "auto",
+                hoverAnimation: false,
+                itemStyle: {
+                    opacity: 0
+                },
+                lineStyle: {
+                    width: 1,
+                    color,
+                    type: "dashed",
+                },
+                select: {
+                    disabled: true
+                },
+            }
+        });
+        console.log(level);
+
+        function getCompletionDegree(year, value) {
+            let flag = '';
+            value.forEach((item) => {
+                if (item.createTime == year) {
+                    flag = item.sw;
+                }
+            });
+            return flag;
+        }
+        const option = {
+            backgroundColor: 'rgba(0,0,0,0)',
+            tooltip: {
+                show: true,
+                trigger: 'axis',
+                padding: [0, 0, 0, 0],
+                axisPointer: {
+                    lineStyle: {
+                        width: 1,
+                        type: 'solid',
+                        color: '#00D1FF'
+                    }
+                },
+                backgroundColor: 'transparent',
+                borderColor: 'transparent',
+                shadowColor: 'transparent',
+                formatter: (val) => {
+                    return `<div class="" style="width:127px;height:52px; background-color:rgba(6,39,47,0.5);background-size:contain;padding-top:3px">
+                            <p style="font-size:12px;color:#FFFFFF;;display:flex;align-items: center ;margin-left:5px; margin-top:6px">
+                             ${val[0].name}
+                            </p>
+                            <p style="font-size:12px;color:#26F4FC;display:flex;align-items: center; margin-top:-14px">
+                            <span style="font-family: 'DIN'; font-size:12px;margin-left:5px;">数值:${getCompletionDegree(
+                        val[0].name,
+                        value
+                    )}</span>
+                        </p>
+                     </div>`;
+                }
+            },
+
+            textStyle: {
+                color: 'rgba(221,247,255,0.7)'
+            },
+            grid: {
+                containLabel: true,
+                left: 10,
+                top: 25,
+                bottom: 0,
+                right: 15
+            },
+            legend: {
+                right: 0,
+                top: 0,
+                textStyle: {
+                    color: "#fff",
+                },
+                lineStyle: {
+                    type: "solid",
+                    width: 8,
+                    inactiveWidth: 8
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: value.map((item) => item.createTime),
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(240,240,245,0.1)',
+                        type: 'solid' //虚线
+                    }
+                },
+                axisLabel: {
+                    align: 'left'
+                },
+                axisTick: {
+                    show: false
+                }
+            },
+            yAxis: {
+                max: maxValue,
+                type: 'value',
+                minInterval: 1,
+                // offset: 5,
+                axisLabel: {
+                    show: false,
+                },
+                axisLine: {
+                    show: true,
+                },
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgba(240,240,245,0.1)',
+                    },
+                },
+            },
+            series: [
+                ...level,
+                {
+                    type: 'line',
+                    data: value.map(v => v.sw),
+                    smooth: 0.6,
+                    symbol: false,
+                    symbolSize: 3,
+                    showSymbol: true,
+                    hoverAnimation: true,
+                    itemStyle: {
+                        opacity: 0
+                    },
+                    lineStyle: {
+                        width: 1,
+                        color: '#17D3FF'
+                    },
+                    areaStyle: {
+                        //区域填充样式
+                        normal: {
+                            //线性渐变，前4个参数分别是x0,y0,x2,y2(范围0~1);相当于图形包围盒中的百分比。如果最后一个参数是‘true’，则该四个值是绝对像素位置。
+                            color: new echarts.graphic.LinearGradient(
+                                0,
+                                0,
+                                0,
+                                1,
+                                [
+                                    {
+                                        offset: 0,
+                                        color: 'rgba(23,211,255, .3)'
+                                    },
+                                    {
+                                        offset: 1,
+                                        color: 'rgba(23,211,255, 0)'
+                                    }
+                                ],
+                                false
+                            ),
+                            shadowColor: 'rgba(0, 255, 255, 0.5)', //阴影颜色
+                            shadowBlur: 20 //shadowBlur设图形阴影的模糊大小。配合shadowColor,shadowOffsetX/Y, 设置图形的阴影效果。
+                        }
+                    }
+                }
+            ]
+        };
+
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+        window.addEventListener('resize', myChart.resize);
+    </script>
+</body>
+
+
+</html>

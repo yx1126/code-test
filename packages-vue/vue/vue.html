@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.0.0/dist/vue-router.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        // app
+        const App = {
+            template: `
+            <div>
+                <h1>App</h1>
+                <keep-alive include="A,B">
+                    <router-view />
+                </keep-alive>
+            </div>
+            `
+        };
+
+        // components
+        const AComp = {
+            name: "AComp",
+            template: `<div>AComp</div>`,
+            created() {
+                console.log("AComp -> created");
+            },
+            activated() {
+                console.log("AComp -> activated");
+            }
+        };
+        const BComp = {
+            name: "BComp",
+            template: `<div>BComp</div>`,
+            created() {
+                console.log("BComp -> created");
+            },
+            activated() {
+                console.log("BComp -> activated");
+            }
+        };
+
+        // pages
+        const A = {
+            name: "A",
+            components: {
+                AComp
+            },
+            template: `
+            <div>
+                <h2>A</h2>
+                <router-link to="/b">to B</router-link>
+                <AComp />
+            </div>
+            `,
+            activated() {
+                console.log("A -> activated");
+            }
+        }
+        const B = {
+            name: "B",
+            components: {
+                BComp
+            },
+            template: `
+            <div>
+                <h2>B</h2>
+                <router-link to="/a">to A</router-link>
+                <BComp />
+            </div>
+            `,
+            activated() {
+                console.log("B -> activated");
+            }
+        }
+
+        const router = new VueRouter({
+            mode: 'hash',
+            routes: [
+                {
+                    path: "/a",
+                    component: A
+                },
+                {
+                    path: "/b",
+                    component: B
+                }
+            ]
+        });
+        new Vue({
+            el: "#app",
+            router,
+            render: (h) => h(App),
+        });
+
+        "".padStart
+    </script>
+</body>
+
+</html>

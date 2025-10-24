@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script> -->
+    <style>
+        .box-wrapper {
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+            border: 1px solid red;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="onClick();">click</button>
+    <div class="box-wrapper">
+        <div id="box" class="box"></div>
+    </div>
+    <script>
+        function onClick() {
+            fly(document.getElementById("box"), { a: 0.01 })
+        }
+        function fly(obj = null, config = {}) {
+            var { a = 0.001, totalTime = 500, frequency = 1000 / 60, sLeft = 0, sTop = 0, eLeft = 200, eTop = 200, stepFn, endFn } = config
+            var timer = null;
+            var sTime = +new Date();
+            var eTime = sTime + totalTime;
+            var x = eLeft - sLeft;
+            var y = eTop - sTop;
+            var b = (y - a * x * x) / x;
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var currentTime = +new Date();
+
+                if (currentTime > eTime) { //当前时间大于结束时间就停止运动
+                    clearInterval(timer);
+                    obj.style.transform = `translate3d(${eLeft}px}, ${eTop}px, 0)`
+                    endFn && endFn.call(this);
+                } else {
+                    var disX = x * (currentTime - sTime) / totalTime;
+                    var disY = a * Math.pow(disX, 2) + b * disX;
+
+                    obj.style.transform = `translate3d(${sLeft + disX}px, ${sTop + disY}px, 0)`
+                    stepFn && stepFn.call(this, sLeft + disX, sTop + disY);
+                }
+            }, frequency);
+        }
+
+    </script>
+
+</body>
+
+</html>

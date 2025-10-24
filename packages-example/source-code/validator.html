@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validator</title>
+</head>
+
+<body>
+    <script>
+        function toString(value) {
+            return Object.prototype.toString.call(value);
+        }
+
+        const map = {
+            "[object Boolean]": "boolean",
+            "[object Number]": "number",
+            "[object String]": "string",
+            "[object Function]": "function",
+            "[object Array]": "array",
+            "[object Date]": "date",
+            "[object RegExp]": "regExp",
+            "[object Undefined]": "undefined",
+            "[object Null]": "null",
+            "[object Object]": "object",
+            "[object Promise]": "promise",
+        };
+
+        function typeOf(value) {
+            return map[toString(value)];
+        }
+
+        function checkOf(value, type) {
+            return map[toString(value)] === type;
+        }
+
+        function isNumber(value) {
+            return checkOf(value, "number");
+        }
+
+        function isString(value) {
+            return checkOf(value, "string");
+        }
+
+        function isArray(value) {
+            return checkOf(value, "array");
+        }
+
+        function isObject(value) {
+            return checkOf(value, "object");
+        }
+
+        function isFunction(value) {
+            return checkOf(value, "function");
+        }
+
+        function isPromise(value) {
+            return (checkOf(value, "promise") || isObject(value) || isFunction(value)) && isFunction(value.then) && isFunction(value.catch);
+        }
+        const p = function () { };
+        p.then = function () { }
+        p.catch = function () { }
+        console.log(p, p.then);
+        console.log(isPromise(p));
+    </script>
+</body>
+
+</html>

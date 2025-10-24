@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #container {
+            height: 400px;
+            /* 视口高度 */
+            overflow-y: auto;
+            /* 启用滚动 */
+            position: relative;
+        }
+
+        #content {
+            position: absolute;
+            width: 100%;
+        }
+
+        .item {
+            height: 50px;
+            /* 每个项的高度 */
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id="content"></div>
+    </div>
+    <script>
+        const container = document.getElementById('container');
+        const content = document.getElementById('content');
+        const itemHeight = 50; // 每个项的高度
+        const itemCount = 1000; // 数据项总数
+        const viewportHeight = container.clientHeight; // 视口高度
+
+        // 计算总高度
+        const totalHeight = itemCount * itemHeight;
+        // content.style.height = `${totalHeight}px`;
+        // 渲染项
+        function renderItems(e) {
+            const scrollTop = container.scrollTop;
+            const startIndex = Math.floor(scrollTop / itemHeight);
+            const endIndex = Math.min(itemCount - 1, Math.ceil((scrollTop + viewportHeight) / itemHeight));
+            let html = '';
+            for (let i = startIndex; i <= endIndex; i++) {
+                html += `<div class="item">Item ${i}</div>`;
+            }
+            content.innerHTML = html;
+            const top = e?.target?.scrollTop ?? 0;
+            content.style.paddingTop = top + "px";
+            content.style.paddingBottom = totalHeight - (endIndex - startIndex) * itemHeight - top + "px";
+        }
+        container.addEventListener('scroll', (e) => {
+            renderItems(e);
+        });
+
+        // 初始渲染
+        renderItems();
+    </script>
+</body>
+
+</html>

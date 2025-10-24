@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+            font-weight: 600;
+            color: #909399;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .scroll {
+            width: 500px;
+            height: 100px;
+            border: 1px solid red;
+            margin: 50px auto;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="copy();">Copy</button>
+    <pre>
+        <code></code>
+    </pre>
+    <script>
+        const str = `
+      <u-table v-loading="loading" v-bind="tableAttrs" v-on="tableEvents" height="308">
+                                <el-table-column label="序号" type="index" :index="indexMethod" align="center"
+                                    width="80"></el-table-column>
+                                <el-table-column label="设施名称" prop="planName" align="center"></el-table-column>
+                                <el-table-column label="巡查人" prop="patrolUserName" align="center"></el-table-column>
+                                <el-table-column label="巡查人联系方式" prop="" align="center"></el-table-column>
+                                <el-table-column label="巡查时间" prop="" align="center"></el-table-column>
+                                <el-table-column label="巡查率" prop="" align="center"></el-table-column>
+                            </u-table>
+        `;
+        const parse = new DOMParser();
+        const dom = parse.parseFromString(str, "text/html");
+        const columns = dom.querySelectorAll("el-table-column");
+        console.log(dom);
+        console.log(columns);
+        function formatProps(name, v) {
+            // el-table-column props
+            switch (name) {
+                case "minwidth":
+                    return { prop: "minWidth", value: v };
+                case "fixed":
+                    return v ? v : true;
+                case "index":
+                    return `this.${v}`;
+                case "show-overflow-tooltip":
+                    return { prop: "tooltip", value: v === false ? v : true };
+                default:
+                    return {
+                        prop: name.includes("-") ? name.replace(/-\w{1}/g, v => v.substring(1).toUpperCase()) : name,
+                        value: v
+                    };
+            }
+        }
+        function formatJson(value) {
+            let str = JSON.stringify(value, null, 4);
+            // 去除 key 引号
+            str = str.replace(/\"(.*)\": /g, "$1:");
+            // 去除this.引号
+            str = str.replace(/\"this\.(.*?)\"/g, "this.$1");
+            // 去除true/false 引号
+            str = str.replace(/\"(true|false)\"/g, "$1");
+            return str;
+        }
+        const result = [...columns].map(c => {
+            const hasTemp = [...c.children].find(v => v.nodeName.toLowerCase() === "template");
+            const result = [...c.attributes].reduce((pre, { name, value }) => {
+                const prop = name.startsWith(":") ? name.substring(1) : name;
+                const val = formatProps(prop, value);
+                if (typeof val === "string") {
+                    pre[prop] = val;
+                } else {
+                    pre[val.prop] = val.value;
+                }
+                return pre;
+            }, {})
+            if (hasTemp) {
+                result.slotName = result["prop"];
+            }
+            if (result.label === "操作") {
+                result.slotName = "operate";
+                result.fixed = "right";
+            }
+            if (["桥梁名称", "道路名称", "项目名称", "备注"].includes(result.label)) {
+                result.tooltip = true;
+            }
+            if (["index", "selection"].includes(result.type)) {
+                result.fixed = true;
+            }
+            return result;
+        });
+        const text = formatJson(result);
+        // console.log(result);
+        console.log(text);
+        function copy() {
+            window.navigator.clipboard.writeText(text);
+        }
+    </script>
+</body>
+
+
+</html>

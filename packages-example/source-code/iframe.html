@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="importmap">
+        {
+            "imports": {
+                "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
+                "index": "./index.js"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <script type="module">
+        import { onClick } from "index";
+        console.log(onClick);
+        import { ref } from "vue";
+        console.log(ref);
+    </script>
+    <script>
+        const html = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document<\/title>
+        <\/head>
+        <body>
+            <script>console.log("load iframe");<\/script>
+        <\/body>
+
+        <\/html>
+        `;
+        const iframe = document.createElement("iframe");
+        iframe.srcdoc = html;
+        document.body.appendChild(iframe);
+    </script>
+</body>
+
+</html>

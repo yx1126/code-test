@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        const REGEX_FORMAT = /\[([^\]]+)]|y{1,4}|M{1,4}|d{1,2}|W{1,2}|H{1,2}|h{1,2}|m{1,2}|s{1,2}/g
+        class Dayjs2 {
+            $d
+            constructor(value) {
+                this.$v = value;
+                const date = value ? new Date(value) : new Date();
+                this.$d = {
+                    $y: date.getFullYear(),
+                    $M: date.getMonth() + 1,
+                    $D: date.getDate(),
+                    $W: date.getDay(),
+                    $H: date.getHours(),
+                    $m: date.getMinutes(),
+                    $s: date.getSeconds(),
+                }
+            }
+            format(value) {
+                if (!value) value = "";
+                const { $d, repair } = this;
+                const matches = (match) => {
+                    switch (match) {
+                        case "yy":
+                            return String($d.$y).slice(-2)
+                        case "yyyy":
+                            return $d.$y
+                        case "M":
+                            return $d.$M
+                        case "MM":
+                            return repair($d.$M)
+                        case "d":
+                            return $d.$D
+                        case "dd":
+                            return repair($d.$D)
+                        case "W":
+                            return $d.$W
+                        case "WW":
+                            return repair($d.$W)
+                        case "H":
+                            return $d.$H
+                        case "HH":
+                            return repair($d.$H)
+                        case "h":
+                            return $d.$H % 12 || 12
+                        case "hh":
+                            return repair(matches("h"))
+                        case "m":
+                            return $d.$m
+                        case "mm":
+                            return repair($d.$m)
+                        case "s":
+                            return $d.$s
+                        case "ss":
+                            return repair($d.$s)
+                    }
+                }
+                return value.replace(REGEX_FORMAT, (match, $1) => $1 || matches(match));
+            }
+
+            repair(value) {
+                if (!value && value !== 0) return "";
+                return String(value).padStart(2, "0");
+            }
+        }
+
+        function dayjs2(value) {
+            return new Dayjs2(value);
+        }
+
+        console.log(dayjs2().format("yy-M-d h:m:s"));
+        console.log(dayjs().format("YY-M-D h:m:s"));
+    </script>
+</body>
+
+</html>

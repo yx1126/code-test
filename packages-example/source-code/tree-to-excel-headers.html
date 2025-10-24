@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function getTreeLastNodeSum(list, childrenField = "children") {
+            if (!Array.isArray(list)) return 0;
+            const result = [];
+            function start(data) {
+                const hasChilds = data.filter(item => item[childrenField] && item[childrenField].length > 0);
+                const noChilds = data.filter(item => !item[childrenField] || (item[childrenField] && item[childrenField].length <= 0));
+                result.push(noChilds.length);
+                hasChilds.forEach(item => {
+                    start(item.children)
+                })
+            }
+            start(list)
+            return result.reduce((pre, cur) => pre + cur, 0);
+        }
+        function getDeepInsertId(list, childrenField = "children") {
+            let deep = 1;
+            const newList = JSON.parse(JSON.stringify(list))
+            const flatResult = [];
+            function start(data, level = 1, parentlist = [], parentId = void 0) {
+                if (level > deep) deep = level;
+                return data.map((d, i) => {
+                    const id = [...parentlist, i].join("-");
+                    const rootId = parentlist.length > 0 ? parentlist[0] : void 0;
+                    const item = {
+                        ...d,
+                        level,
+                        excel_id: id,
+                        excel_parentId: parentId,
+                        excel_rootId: rootId !== void 0 ? String(rootId) : rootId,
+                    };
+                    flatResult.push(item);
+                    if (Array.isArray(d[childrenField]) && d[childrenField].length > 0) {
+                        d[childrenField] = start(d[childrenField], level + 1, [...parentlist, i], id)
+                    }
+                    return item;
+                })
+            }
+            const result = start(newList);
+            return { deep, result, flatResult };
+        }
+        function formatHeader(headers, options) {
+            const EXCEL_MERGE = "";
+            if (!Array.isArray(headers)) return [];
+            const { key, children } = Object.assign({ key: "label", children: "children" }, options)
+            const childNodes = headers.map(item => getTreeLastNodeSum(item[children], children));
+            const { deep, flatResult, result: deepResult } = getDeepInsertId(headers);
+            const result = Array.from({ length: deep }).map(() => []);
+            result.forEach((r, ri) => {
+                const levelList = flatResult.filter(item => item.level === ri + 1);
+                const rootTypeLits = deepResult.map(dr => {
+                    if (ri === 0) return [dr];
+                    const value = levelList.filter(item => item.excel_rootId === dr.excel_id);
+                    return value.length > 0 ? value : [{ [key]: EXCEL_MERGE }];
+                });
+                const labels = rootTypeLits.reduce((pre, cur, i) => {
+                    const curLabels = cur.map(c => {
+                        const length = c[children] && c[children].length > 0 ? c[children].length - 1 : 0;
+                        return [c[key], ...Array.from({ length }).map(() => EXCEL_MERGE)];
+                    }).flat(Infinity);
+                    const poor = childNodes[i] - curLabels.length;
+                    const poorList = Array.from({ length: poor > 0 ? poor : 0 }).map(() => EXCEL_MERGE);
+                    pre.push(...curLabels, ...poorList);
+                    return pre;
+                }, [])
+                r.push(...labels);
+            })
+            return result;
+        }
+        const data = [
+            {
+                label: "Id",
+                children: [{ label: "id1" }, { label: "id2" }]
+            },
+            {
+                label: "Main Information",
+                children: [
+                    {
+                        label: "Title",
+                        children: [
+                            {
+                                label: "test1",
+                                children: [{ label: "测试1" }, { label: "测试2" }]
+                            },
+                            { label: "test2" }
+                        ]
+                    },
+                    { label: "Author" },
+                    { label: "Readings" },
+                ]
+            },
+            {
+                label: "Date",
+                children: [{ label: "date1" }, { label: "date2" }]
+            },
+        ]
+        const list = [
+            ["Id", "", "Main Information", "", "", "", "Date", ""],
+            ["id1", "id2", "Title", "", "Author", "Readings", "date1", "date2"],
+            ["", "", "test1", "test2", "", "", "", ""]
+        ]
+        const result = formatHeader(data);
+        console.log(data);
+        console.log(result);
+    </script>
+</body>
+
+</html>

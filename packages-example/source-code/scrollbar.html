@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollbar</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .scroll-bar {
+            width: 500px;
+            margin: 100px auto;
+            /* border: 1px solid red; */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content {
+            height: 500px;
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none !important;
+        }
+
+        .content p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50px;
+            margin: 10px;
+            text-align: center;
+            border-radius: 4px;
+            background: #ecf5ff;
+            color: #409eff;
+        }
+
+        .content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .bar {
+            width: 6px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+        }
+
+        .thumb {
+            border-radius: 5px;
+            background-color: #909399;
+            cursor: pointer;
+            opacity: .3;
+        }
+
+        .thumb:hover {
+            background-color: #909399;
+            opacity: .5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-bar">
+        <div class="content">
+            <p>test1</p>
+            <p>test2</p>
+            <p>test3</p>
+            <p>test4</p>
+            <p>test5</p>
+            <p>test6</p>
+            <p>test7</p>
+            <p>test8</p>
+            <p>test9</p>
+            <p>test10</p>
+            <p>test11</p>
+            <p>test12</p>
+            <p>test13</p>
+            <p>test14</p>
+            <p>test15</p>
+            <p>test16</p>
+            <p>test17</p>
+            <p>test18</p>
+            <p>test19</p>
+            <p>test20</p>
+            <p>test21</p>
+            <p>test22</p>
+            <p>test23</p>
+            <p>test24</p>
+            <p>test25</p>
+            <p>test26</p>
+            <p>test27</p>
+            <p>test28</p>
+            <p>test29</p>
+            <p>test30</p>
+            <p>test31</p>
+            <p>test32</p>
+            <p>test33</p>
+            <p>test34</p>
+            <p>test35</p>
+            <p>test36</p>
+            <p>test37</p>
+            <p>test38</p>
+            <p>test39</p>
+            <p>test40</p>
+            <p>test41</p>
+            <p>test42</p>
+            <p>test43</p>
+            <p>test44</p>
+            <p>test45</p>
+            <p>test46</p>
+            <p>test47</p>
+            <p>test48</p>
+            <p>test49</p>
+            <p>test50</p>
+            <p>50+1</p>
+            <p>50+2</p>
+            <p>50+3</p>
+            <p>50+4</p>
+            <p>50+5</p>
+            <p>50+6</p>
+            <p>50+7</p>
+            <p>50+8</p>
+            <p>50+9</p>
+        </div>
+        <div class="bar">
+            <div class="thumb"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function getScrollBarWidth() {
+        const box = document.createElement("div");
+        box.style.overflow = "scroll";
+        box.style.visibility = "hidden";
+        box.style.position = "absolute";
+        box.style.top = "0px";
+        box.style.width = "500px";
+        const child = document.createElement("div");
+        child.style.width = "100%";
+        box.appendChild(child);
+        document.body.appendChild(box);
+        const value = box.offsetWidth - child.offsetWidth;
+        document.body.removeChild(box);
+        return value;
+    }
+
+    const scrollBar = document.querySelector(".scroll-bar");
+    const content = document.querySelector(".content");
+    const bar = document.querySelector(".bar");
+    const thumb = document.querySelector(".thumb");
+
+    //  滑块高度
+    let thumbHeight = content.offsetHeight ** 2 / content.scrollHeight;
+
+    // 最小值
+    if (thumbHeight < 20) {
+        thumbHeight = 20;
+    }
+
+    thumb.style.height = thumbHeight + "px";
+
+    let originalOnSelectStart;
+
+    // 滚动的高度 = 容器总高度 - 容器自身高度
+    const scrollHeight = content.scrollHeight - content.offsetHeight;
+    // 滑块 滚动高度
+    const thumbScrollHeight = content.offsetHeight - thumbHeight;
+
+    content.addEventListener("scroll", function (e) {
+        const v = e.target.scrollTop / scrollHeight;
+        thumb.style.transform = `translateY(${thumbScrollHeight * v}px)`;
+    })
+
+    function onMousedown(event) {
+        event.stopPropagation()
+        // 禁止鼠标 middle right 点击
+        if (event.ctrlKey || [1, 2].includes(event.button)) return;
+        window.getSelection()?.removeAllRanges();
+        event.stopImmediatePropagation();
+        originalOnSelectStart = document.onselectstart
+        document.onselectstart = () => false;
+
+        // 鼠标点击时滑块Y轴默认偏移量
+        let translateY = 0;
+        let transform = getComputedStyle(thumb)["transform"];
+        if (transform !== "none") {
+            const list = transform.match(/\((.+)\)/)[1].split(",");
+            translateY = Number(list[list.length - 1]);
+        }
+
+
+        function onMousemove(e) {
+            const y = e.clientY - event.clientY + translateY;
+            const moveY = y < 0 ? 0 : y > thumbScrollHeight ? thumbScrollHeight : y;
+            content.scrollTop = moveY / thumbScrollHeight * scrollHeight;
+        }
+
+        function onMousemup(e) {
+            document.removeEventListener("mousemove", onMousemove);
+            document.removeEventListener("mouseup", onMousemup);
+            if (document.onselectstart !== originalOnSelectStart)
+                document.onselectstart = originalOnSelectStart;
+        }
+        document.addEventListener("mousemove", onMousemove)
+        document.addEventListener("mouseup", onMousemup)
+    }
+    thumb.addEventListener("mousedown", onMousedown)
+</script>
+
+</html>

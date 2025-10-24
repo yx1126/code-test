@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+
+<head>
+    <meta charset="utf-8">
+
+    <style>
+        .box {
+            display: inline-block;
+            padding: 20px;
+            background-color: #0a1b25;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .container {
+            width: 500px;
+            height: 224px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="color: #00FFFF;">title</h1>
+    <div class="box">
+        <div class="container" id="container"></div>
+    </div>
+
+
+    <script type="text/javascript"
+        src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+
+
+    <script type="text/javascript">
+        var dom = document.getElementById('container');
+        var myChart = echarts.init(dom, null, {
+            renderer: 'canvas',
+            useDirtyRect: false
+        });
+        // 数据
+        var data = [
+            ['2024-06-21 09:00:00', 11.0],
+            ['2024-06-21 09:05:00', 11.5],
+            ['2024-06-21 09:10:00', 11.8],
+            ['2024-06-21 09:15:00', 12.0],
+            ['2024-06-21 09:20:00', 11.5],
+            ['2024-06-21 09:25:00', 11.3],
+            ['2024-06-21 09:30:00', 11.7],
+            ['2024-06-21 09:35:00', 12.2],
+            ['2024-06-21 09:40:00', 11.9],
+            ['2024-06-21 09:45:00', 11.6],
+            ['2024-06-21 09:50:00', 11.8],
+            ['2024-06-21 09:55:00', 12.3],
+            ['2024-06-21 10:00:00', 12.0]
+        ];
+
+        // 获取y轴最大值
+        var maxValue = Math.max(...data.map(item => item[1]));
+
+        const option = {
+            xAxis: {
+                type: 'time',
+                boundaryGap: false
+            },
+            yAxis: {
+                type: 'value',
+                axisLine: {
+                    show: false // 隐藏y轴轴线
+                }
+            },
+            visualMap: {
+                show: false,
+                pieces: [{
+                    lte: 11.5, color: '#53ffea'
+                }, {
+                    gt: 11.5, lte: 12.0, color: '#ffa91b'
+                }, {
+                    gt: 12.0, color: '#ff4f4f'
+                }]
+            },
+            series: [{
+                name: 'Line',
+                data: data,
+                type: 'line',
+                smooth: true,
+                lineStyle: {
+                    color: '#4fa3ff'
+                },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0, color: '#4fa3ff' // 顶部颜色
+                    }, {
+                        offset: 1, color: '#ffe3a3' // 底部颜色
+                    }])
+                }
+            },
+            {
+                name: 'Bar',
+                type: 'bar',
+                xAxisIndex: 1,
+                yAxisIndex: 1,
+                data: data.map(item => [item[0], item[1] / maxValue * 100]), // 将数据标准化到0-100
+                barWidth: '100%',
+                itemStyle: {
+                    color: function (params) {
+                        if (params.value[1] <= 11.5) {
+                            return '#53ffea';
+                        } else if (params.value[1] <= 12.0) {
+                            return '#ffa91b';
+                        } else {
+                            return '#ff4f4f';
+                        }
+                    }
+                }
+            }],
+            grid: [{
+                left: '10%',
+                right: '10%',
+                top: '10%',
+                bottom: '20%'
+            }, {
+                left: '10%',
+                right: '10%',
+                top: '80%',
+                height: 0
+            }],
+            yAxis: [{
+                type: 'value',
+                boundaryGap: false
+            }, {
+                type: 'value',
+                position: 'right',
+                min: 0,
+                max: 100,
+                show: false
+            }],
+            xAxis: [{
+                type: 'time',
+                boundaryGap: false
+            }, {
+                type: 'category',
+                position: 'bottom',
+                data: data.map(item => item[0]),
+                axisLabel: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    show: false
+                }
+            }]
+        };
+
+
+        if (option && typeof option === 'object') {
+            myChart.setOption(option);
+        }
+
+        window.addEventListener('resize', myChart.resize);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 4px solid red;
+            margin: 100px auto;
+            border-radius: 10px;
+            border-left-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <script type="module">
+        export const isBol = (v) => typeof v === "boolean";
+
+        export const isObj = (v) => Object.prototype.toString.call(v) === "[object Object]";
+
+        export const isStr = (v) => typeof v === "string";
+
+        export const isArray = (v) => Array.isArray(v);
+
+        // import { ref, watch, toRefs } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+        function mergeConfig(config, ...values) {
+            const baseConfig = config || {};
+            values.forEach(item => {
+                Object.entries(item).forEach(([key, value]) => {
+                    // const key = _key;
+                    if (isObj(value)) {
+                        baseConfig[key] = mergeConfig(baseConfig[key], value);
+                    } else if (isArray(value)) {
+                        baseConfig[key] = [].concat(baseConfig[key] || [], value);
+                    } else {
+                        baseConfig[key] = value;
+                    }
+                });
+            });
+            return baseConfig;
+        }
+        const _config = mergeConfig({
+            package: true,
+            json: true,
+            stylistic: {
+                indent: 4,
+            },
+            yaml: {
+                indent: 2,
+            },
+            flatESLintConfig: [{
+                ignore: []
+            }],
+        }, {
+            json: false,
+            stylistic: {
+                indent: 2,
+            },
+            flatESLintConfig: [{
+                rules: {
+                    "no-console": "off",
+                }
+            }],
+        });
+        function formatMenuTitle(title, template) {
+            const custom = isArray(title) ? title : [title];
+            return template?.replace(/\{(\d+)(\|(.*))?\}/g, (...args) => {
+                console.log(...args);
+                return custom[args[1]] || args[3] || "";
+            });
+        }
+        console.log(formatMenuTitle(["test", "22"], "YOU-{0}-{1|好的}"));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 500px;
+            height: 500px;
+            margin: 50px auto;
+            border: 1px solid #000;
+            position: relative;
+
+            .box {
+                width: 50px;
+                height: 50px;
+                border: 1px solid red;
+                position: absolute;
+                left: 50px;
+                top: 50px;
+                border-radius: 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box"></div>
+    </div>
+
+    <script>
+        const isString = v => typeof v === "string";
+        function drag(el, options) {
+            const target = isString(el) ? document.querySelector(el) : el;
+            if (!target) return;
+
+            const { axis, container: conEl, eventType, moveOver } = Object.assign({}, options);
+
+            const container = isString(conEl) ? document.querySelector(conEl) : conEl;
+
+            const preventDefault = (e) => e.preventDefault();
+
+            function mousedown(downEvt) {
+                const onselectstart = document.onselectstart;
+                document.onselectstart = () => false;
+
+                if (eventType === "right") {
+                    if (downEvt.button !== 2) return;
+                    document.addEventListener("contextmenu", preventDefault);
+                }
+                if ((!eventType || eventType === "left") && downEvt.button !== 0) return;
+
+                const transform = getComputedStyle(target).getPropertyValue("transform");
+                const { m41: translateX, m42: translateY } = new DOMMatrixReadOnly(transform);
+                const cRect = container?.getBoundingClientRect() || { left: 0, top: 0, width: 0, height: 0 };
+                const eRect = target.getBoundingClientRect();
+
+                const box = {
+                    left: cRect.left - eRect.left,
+                    right: cRect.left - eRect.left + cRect.width - eRect.width,
+                    top: cRect.top - eRect.top,
+                    bottom: cRect.top - eRect.top + cRect.height - eRect.height,
+                };
+
+                function mousemove(e) {
+                    const baseX = e.clientX - downEvt.clientX;
+                    const baseY = e.clientY - downEvt.clientY;
+
+                    const moveX = moveOver || !container ? baseX : baseX <= box.left ? box.left : baseX >= box.right ? box.right : baseX;
+                    const moveY = moveOver || !container ? baseY : baseY <= box.top ? box.top : baseY >= box.bottom ? box.bottom : baseY;
+
+                    const x = (!axis || ["xy", "x"].includes(axis) ? moveX : 0) + translateX;
+                    const y = (!axis || ["xy", "y"].includes(axis) ? moveY : 0) + translateY;
+
+                    target.style.transform = `translate(${x}px, ${y}px)`;
+                }
+
+                function mouseup() {
+                    document.onselectstart = onselectstart;
+                    document.removeEventListener("mouseup", mouseup);
+                    document.removeEventListener("mousemove", mousemove);
+                    if (eventType === "right") {
+                        setTimeout(() => {
+                            document.removeEventListener("contextmenu", preventDefault);
+                        }, 100);
+                    }
+                }
+                document.addEventListener("mouseup", mouseup);
+                document.addEventListener("mousemove", mousemove);
+
+                return {
+                    stop: () => {
+                        target.removeEventListener("mousedown", mousedown);
+                    },
+                };
+            }
+            target.addEventListener("mousedown", mousedown);
+        }
+        window.addEventListener("DOMContentLoaded", () => {
+            // console.log(document.getBoundingClientRect());
+            drag(".box", {
+                container: ".wrapper",
+                // axis: "xy",
+                // eventType: "right"
+            });
+        })
+
+        const s = Symbol.for("dialog");
+        const s1 = Symbol.for("dialog");
+        console.log(s, s1, s === s1);
+    </script>
+</body>
+
+</html>

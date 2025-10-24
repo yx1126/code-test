@@ -1,0 +1,800 @@
+<scheme name="dark" version="142" parent_scheme="darcula">
+  <metainfo>
+    <property name="created">2023-07-26t16:22:54</property>
+    <property name="ide">webstorm</property>
+    <property name="ideversion">2023.2.0.0</property>
+    <property name="modified">2023-07-26t16:23:16</property>
+  </metainfo>
+  <colors>
+    <option name="added_lines_color" value="549159" />
+    <option name="annotations_color" value="8d9199" />
+    <option name="annotations_last_commit_color" value="ced0d6" />
+    <option name="caret_color" value="ced0d6" />
+    <option name="caret_row_color" value="26282e" />
+    <option name="console_background_key" value="1e1f22" />
+    <option name="deleted_lines_color" value="868a91" />
+    <option name="diff_separators_background" value="2b2d30" />
+    <option name="documentation_color" value="2b2d30" />
+    <option name="doc_comment_guide" value="394d3f" />
+    <option name="doc_comment_link" value="3887a1" />
+    <option name="error_hint" value="402929" />
+    <option name="folded_text_border_color" value="2b2d30" />
+    <option name="ignored_added_lines_border_color" value="549159" />
+    <option name="ignored_deleted_lines_border_color" value="868a91" />
+    <option name="ignored_modified_lines_border_color" value="375fad" />
+    <option name="indent_guide" value="313438" />
+    <option name="information_hint" value="2b2d30" />
+    <option name="inline_refactoring_settings_default" value="393b40" />
+    <option name="inline_refactoring_settings_focused" value="393b40" />
+    <option name="inline_refactoring_settings_hovered" value="393b40" />
+    <option name="line_numbers_color" value="4b5059" />
+    <option name="line_number_on_caret_row_color" value="a1a3ab" />
+    <option name="lookup_color" value="2b2d30" />
+    <option name="method_separators_color" value="43454a" />
+    <option name="modified_lines_color" value="375fad" />
+    <option name="notification_background" value="25324d" />
+    <option name="promotion_pane" value="25324d" />
+    <option name="question_hint" value="25324d" />
+    <option name="recent_locations_selection" value="2b2d30" />
+    <option name="right_margin_color" value="393b40" />
+    <option name="selected_indent_guide" value="666870" />
+    <option name="scrollbar.mac.hoverthumbcolor" value="ffffff4d" />
+    <option name="scrollbar.mac.thumbcolor" value="ffffff26" />
+    <option name="vcs_annotations_color_1" value="2f5194" />
+    <option name="vcs_annotations_color_2" value="2d416b" />
+    <option name="vcs_annotations_color_3" value="283754" />
+    <option name="vcs_annotations_color_4" value="242d42" />
+    <option name="vcs_annotations_color_5" value="22252e" />
+    <option name="visual_indent_guide" value="2b2d30" />
+    <option name="whitespaces" value="6f737a" />
+    <option name="whitespaces_modified_lines_color" value="52433d" />
+  </colors>
+  <attributes>
+    <option name="annotation_attribute_name_attributes">
+      <value />
+    </option>
+    <option name="annotation_name_attributes" baseattributes="" />
+    <option name="bad_character">
+      <value>
+        <option name="foreground" value="f75464" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="bookmarks_attributes">
+      <value>
+        <option name="error_stripe_color" value="f7e9c6" />
+      </value>
+    </option>
+    <option name="breadcrumbs_current">
+      <value>
+        <option name="foreground" value="dfe1e5" />
+        <option name="background" value="2b2d30" />
+      </value>
+    </option>
+    <option name="breadcrumbs_default">
+      <value>
+        <option name="foreground" value="9da0a8" />
+      </value>
+    </option>
+    <option name="breadcrumbs_hovered">
+      <value>
+        <option name="foreground" value="dfe1e5" />
+        <option name="background" value="2b2d30" />
+      </value>
+    </option>
+    <option name="breadcrumbs_inactive">
+      <value>
+        <option name="foreground" value="6f737a" />
+      </value>
+    </option>
+    <option name="breakpoint_attributes">
+      <value>
+        <option name="background" value="40252b" />
+        <option name="error_stripe_color" value="8c5b65" />
+      </value>
+    </option>
+    <option name="code_lens_border_color">
+      <value>
+        <option name="effect_color" value="868a91" />
+      </value>
+    </option>
+    <option name="console_error_output">
+      <value>
+        <option name="foreground" value="f75464" />
+      </value>
+    </option>
+    <option name="console_normal_output">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="console_range_to_execute">
+      <value>
+        <option name="effect_color" value="3d7a49" />
+      </value>
+    </option>
+    <option name="console_system_output">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="console_user_input">
+      <value>
+        <option name="foreground" value="6aab73" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="css.color">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="css.important">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="css.url">
+      <value>
+        <option name="foreground" value="5c92ff" />
+      </value>
+    </option>
+    <option name="ctrl_clickable">
+      <value>
+        <option name="foreground" value="548af7" />
+        <option name="effect_color" value="548af7" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="custom_keyword1_attributes">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+      </value>
+    </option>
+    <option name="custom_keyword2_attributes">
+      <value>
+        <option name="foreground" value="c77dbb" />
+      </value>
+    </option>
+    <option name="custom_keyword3_attributes">
+      <value>
+        <option name="foreground" value="da19e" />
+      </value>
+    </option>
+    <option name="custom_keyword4_attributes">
+      <value>
+        <option name="foreground" value="b3ae60" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="custom_string_attributes" baseattributes="default_string" />
+    <option name="custom_valid_string_escape_attributes" baseattributes="default_valid_string_escape" />
+    <option name="debugger_inlined_values_execution_line">
+      <value>
+        <option name="foreground" value="849fbf" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="debugger_inlined_values_modified">
+      <value>
+        <option name="foreground" value="b2ae60" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="default_block_comment">
+      <value>
+        <option name="foreground" value="7a7e85" />
+      </value>
+    </option>
+    <option name="default_braces">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_brackets">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_class_reference">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_comma">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_constant">
+      <value>
+        <option name="foreground" value="c77dbb" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="default_doc_comment">
+      <value>
+        <option name="foreground" value="5f826b" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="default_doc_comment_tag">
+      <value>
+        <option name="foreground" value="67a37c" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="default_doc_comment_tag_value">
+      <value>
+        <option name="foreground" value="abadb3" />
+      </value>
+    </option>
+    <option name="default_doc_markup">
+      <value>
+        <option name="foreground" value="68a67e" />
+      </value>
+    </option>
+    <option name="default_dot">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_function_call" baseattributes="default_identifier" />
+    <option name="default_function_declaration">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="default_highlighted_reference">
+      <value>
+        <option name="effect_color" value="6b6c73" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="default_identifier">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_instance_field">
+      <value>
+        <option name="foreground" value="c77dbb" />
+      </value>
+    </option>
+    <option name="default_instance_method">
+      <value>
+        <option name="foreground" value="57aaf7" />
+      </value>
+    </option>
+    <option name="default_invalid_string_escape">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+        <option name="effect_color" value="fa6675" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="default_keyword">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+      </value>
+    </option>
+    <option name="default_line_comment">
+      <value>
+        <option name="foreground" value="7a7e85" />
+      </value>
+    </option>
+    <option name="default_metadata">
+      <value>
+        <option name="foreground" value="b3ae60" />
+      </value>
+    </option>
+    <option name="default_number">
+      <value>
+        <option name="foreground" value="2aacb8" />
+      </value>
+    </option>
+    <option name="default_operation_sign">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_parenths">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_reassigned_local_variable">
+      <value>
+        <option name="foreground" value="bcbec4" />
+        <option name="effect_color" value="84868c" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="default_reassigned_parameter">
+      <value>
+        <option name="foreground" value="bcbec4" />
+        <option name="effect_color" value="84868c" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="default_semicolon">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_static_field">
+      <value>
+        <option name="foreground" value="c77dbb" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="default_static_method">
+      <value>
+        <option name="foreground" value="57aaf7" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="default_string">
+      <value>
+        <option name="foreground" value="6aab73" />
+      </value>
+    </option>
+    <option name="default_tag">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="default_template_language_color">
+      <value>
+        <option name="background" value="2b2d30" />
+      </value>
+    </option>
+    <option name="default_valid_string_escape">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+      </value>
+    </option>
+    <option name="deprecated_attributes">
+      <value>
+        <option name="effect_color" value="bcbec4" />
+        <option name="effect_type" value="3" />
+      </value>
+    </option>
+    <option name="errors_attributes">
+      <value>
+        <option name="effect_color" value="fa6675" />
+        <option name="error_stripe_color" value="d64d5b" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="executionpoint_attributes">
+      <value>
+        <option name="background" value="2a5091" />
+      </value>
+    </option>
+    <option name="folded_text_attributes">
+      <value>
+        <option name="foreground" value="868991" />
+        <option name="background" value="393b40" />
+      </value>
+    </option>
+    <option name="followed_hyperlink_attributes">
+      <value>
+        <option name="foreground" value="b189f5" />
+        <option name="effect_color" value="b189f5" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="gherkin_regexp_parameter">
+      <value>
+        <option name="foreground" value="5c92ff" />
+      </value>
+    </option>
+    <option name="html_attribute_value" baseattributes="default_string" />
+    <option name="html_custom_tag_name">
+      <value>
+        <option name="foreground" value="2fbaa3" />
+      </value>
+    </option>
+    <option name="html_entity_reference">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="html_tag">
+      <value>
+        <option name="foreground" value="d5b778" />
+      </value>
+    </option>
+    <option name="html_tag_name">
+      <value>
+        <option name="foreground" value="d5b778" />
+      </value>
+    </option>
+    <option name="hyperlink_attributes">
+      <value>
+        <option name="foreground" value="548af7" />
+        <option name="effect_color" value="548af7" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="identifier_under_caret_attributes">
+      <value>
+        <option name="background" value="373b39" />
+        <option name="error_stripe_color" value="5b786a" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="implicit_anonymous_class_parameter_attributes">
+      <value>
+        <option name="foreground" value="c77dbb" />
+        <option name="effect_color" value="9e6294" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="inactive_hyperlink_attributes">
+      <value>
+        <option name="effect_color" value="6b6c73" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="info_attributes">
+      <value>
+        <option name="effect_color" value="857042" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="injected_language_fragment">
+      <value>
+        <option name="background" value="293c40" />
+      </value>
+    </option>
+    <option name="inlay_default">
+      <value>
+        <option name="foreground" value="868a91" />
+        <option name="background" value="393b40" />
+      </value>
+    </option>
+    <option name="inlay_text_without_background">
+      <value>
+        <option name="foreground" value="727782" />
+      </value>
+    </option>
+    <option name="inline_parameter_hint">
+      <value>
+        <option name="foreground" value="858a94" />
+        <option name="background" value="393b40" />
+      </value>
+    </option>
+    <option name="inline_parameter_hint_current">
+      <value>
+        <option name="foreground" value="83acfc" />
+        <option name="background" value="35538f" />
+      </value>
+    </option>
+    <option name="inline_parameter_hint_highlighted">
+      <value>
+        <option name="foreground" value="c9cbd6" />
+        <option name="background" value="43454a" />
+      </value>
+    </option>
+    <option name="js.global_function" baseattributes="default_function_declaration" />
+    <option name="js.global_variable">
+      <value>
+        <option name="foreground" value="c77dba" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="js.instance_member_function">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="js.regexp">
+      <value>
+        <option name="foreground" value="42c3d4" />
+      </value>
+    </option>
+    <option name="jsp_directive_name">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="kotlin_label">
+      <value>
+        <option name="foreground" value="32b8af" />
+      </value>
+    </option>
+    <option name="kotlin_mutable_variable">
+      <value>
+        <option name="effect_color" value="84868c" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="kotlin_named_argument">
+      <value>
+        <option name="foreground" value="56c1d6" />
+      </value>
+    </option>
+    <option name="kotlin_smart_cast_receiver">
+      <value>
+        <option name="background" value="1a3b2d" />
+      </value>
+    </option>
+    <option name="kotlin_smart_cast_value">
+      <value>
+        <option name="background" value="1a3b2d" />
+      </value>
+    </option>
+    <option name="kotlin_smart_constant">
+      <value>
+        <option name="background" value="1a3b2d" />
+      </value>
+    </option>
+    <option name="line_full_coverage">
+      <value>
+        <option name="foreground" value="375239" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="line_none_coverage">
+      <value>
+        <option name="foreground" value="5e3838" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="line_partial_coverage">
+      <value>
+        <option name="foreground" value="5e4d33" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="live_template_attributes">
+      <value>
+        <option name="effect_color" value="467ff2" />
+      </value>
+    </option>
+    <option name="live_template_inactive_segment">
+      <value>
+        <option name="effect_color" value="9da0a8" />
+      </value>
+    </option>
+    <option name="log_error_output">
+      <value>
+        <option name="foreground" value="f75464" />
+      </value>
+    </option>
+    <option name="log_info_output">
+      <value>
+        <option name="foreground" value="e0bb65" />
+      </value>
+    </option>
+    <option name="log_verbose_output">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="markdown_auto_link">
+      <value>
+        <option name="foreground" value="56a8f5" />
+        <option name="effect_color" value="56a8f5" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="markdown_image">
+      <value />
+    </option>
+    <option name="markdown_link_text">
+      <value>
+        <option name="foreground" value="56a8f5" />
+        <option name="effect_color" value="56a8f5" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="marked_for_removal_attributes">
+      <value>
+        <option name="effect_color" value="f75464" />
+        <option name="effect_type" value="3" />
+      </value>
+    </option>
+    <option name="matched_brace_attributes">
+      <value>
+        <option name="background" value="43454a" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="matched_tag_name">
+      <value>
+        <option name="background" value="3f4045" />
+      </value>
+    </option>
+    <option name="not_top_frame_attributes">
+      <value>
+        <option name="background" value="273552" />
+      </value>
+    </option>
+    <option name="not_used_element_attributes">
+      <value>
+        <option name="foreground" value="6f737a" />
+      </value>
+    </option>
+    <option name="properties.invalid_string_escape">
+      <value>
+        <option name="foreground" value="f75464" />
+        <option name="effect_color" value="fa6675" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="properties.key">
+      <value>
+        <option name="foreground" value="cf8e6d" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="qute_background">
+      <value>
+        <option name="background" value="27292b" />
+      </value>
+    </option>
+    <option name="regexp.braces" baseattributes="default_braces" />
+    <option name="regexp.brackets" baseattributes="default_brackets" />
+    <option name="regexp.char_class">
+      <value>
+        <option name="foreground" value="b2ae60" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="regexp.esc_character" baseattributes="default_valid_string_escape" />
+    <option name="regexp.meta" baseattributes="default_keyword" />
+    <option name="regexp.parenths" baseattributes="default_parenths" />
+    <option name="regexp.quote_character" baseattributes="default_valid_string_escape" />
+    <option name="regexp.redundant_escape">
+      <value>
+        <option name="foreground" value="6f7587" />
+        <option name="font_type" value="1" />
+      </value>
+    </option>
+    <option name="runtime_error">
+      <value>
+        <option name="effect_color" value="f2c55c" />
+        <option name="error_stripe_color" value="d64d5b" />
+        <option name="effect_type" value="5" />
+      </value>
+    </option>
+    <option name="search_result_attributes">
+      <value>
+        <option name="background" value="2d543f" />
+        <option name="error_stripe_color" value="42bd77" />
+      </value>
+    </option>
+    <option name="static method access">
+      <value>
+        <option name="foreground" value="c77dba" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="static property reference id">
+      <value>
+        <option name="foreground" value="c77dba" />
+        <option name="font_type" value="2" />
+      </value>
+    </option>
+    <option name="template_variable_attributes">
+      <value>
+        <option name="foreground" value="b189f5" />
+      </value>
+    </option>
+    <option name="text">
+      <value>
+        <option name="foreground" value="bcbec4" />
+        <option name="background" value="1e1f22" />
+      </value>
+    </option>
+    <option name="text_search_result_attributes">
+      <value>
+        <option name="background" value="114957" />
+        <option name="effect_color" value="165e70" />
+        <option name="error_stripe_color" value="72d6d6" />
+      </value>
+    </option>
+    <option name="text_style_error">
+      <value>
+        <option name="effect_color" value="cf514e" />
+        <option name="effect_type" value="5" />
+      </value>
+    </option>
+    <option name="text_style_warning">
+      <value>
+        <option name="effect_color" value="ba9752" />
+        <option name="effect_type" value="5" />
+      </value>
+    </option>
+    <option name="todo_default_attributes">
+      <value>
+        <option name="foreground" value="8bb33d" />
+        <option name="font_type" value="2" />
+        <option name="error_stripe_color" value="73ad2b" />
+      </value>
+    </option>
+    <option name="type_parameter_name_attributes">
+      <value>
+        <option name="foreground" value="16baac" />
+      </value>
+    </option>
+    <option name="typo">
+      <value>
+        <option name="effect_color" value="7ec482" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="unmatched_brace_attributes">
+      <value>
+        <option name="foreground" value="f75464" />
+      </value>
+    </option>
+    <option name="unresolved reference access">
+      <value>
+        <option name="foreground" value="757a85" />
+        <option name="effect_color" value="6a707a" />
+        <option name="effect_type" value="5" />
+      </value>
+    </option>
+    <option name="warning_attributes">
+      <value>
+        <option name="effect_color" value="f2c55c" />
+        <option name="error_stripe_color" value="c29e4a" />
+        <option name="effect_type" value="2" />
+      </value>
+    </option>
+    <option name="write_identifier_under_caret_attributes">
+      <value>
+        <option name="background" value="402f33" />
+        <option name="error_stripe_color" value="ba6387" />
+        <option name="effect_type" value="1" />
+      </value>
+    </option>
+    <option name="write_search_result_attributes">
+      <value>
+        <option name="background" value="66313f" />
+        <option name="error_stripe_color" value="fa7db1" />
+      </value>
+    </option>
+    <option name="wrong_references_attributes">
+      <value>
+        <option name="foreground" value="f75464" />
+      </value>
+    </option>
+    <option name="xml_attribute_name">
+      <value>
+        <option name="foreground" value="bcbec4" />
+      </value>
+    </option>
+    <option name="xml_custom_tag_name">
+      <value>
+        <option name="foreground" value="2fbaa3" />
+      </value>
+    </option>
+    <option name="xml_entity_reference">
+      <value>
+        <option name="foreground" value="56a8f5" />
+      </value>
+    </option>
+    <option name="xml_prologue">
+      <value>
+        <option name="foreground" value="d5b778" />
+      </value>
+    </option>
+    <option name="xml_tag">
+      <value>
+        <option name="foreground" value="d5b778" />
+      </value>
+    </option>
+    <option name="xml_tag_name">
+      <value>
+        <option name="foreground" value="d5b778" />
+      </value>
+    </option>
+  </attributes>
+</scheme>

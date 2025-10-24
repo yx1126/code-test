@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .canvas-box {
+            width: 1200px;
+            height: 600px;
+            border: 1px solid red;
+            margin: 50px auto;
+        }
+
+        .canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="./js/fabric.js"></script>
+
+    <div class="canvas-box">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        console.log(fabric);
+        const canvas = new fabric.Canvas("canvas", {
+            width: 1200,
+            height: 600,
+            selection: false
+        });
+        const url = "https://newoss.zhulong.com/tfs/pic/v1/tfs/T1NDY_B4Lv1RCvBVdK.jpg";
+        // const image = new Image();
+        // image.src = url;
+        // image.onload = () => {
+        //     const inst = new fabric.Image(image, {});
+        //     canvas.add(inst);
+        // }
+        fabric.Image.fromURL(url, function (img) {
+            // 设置图片属性
+            img.set({
+                left: 0,
+                top: 0,
+                // scaleX: canvas.width / img.width,
+                // scaleY: canvas.height / img.height
+            });
+            // 将图片添加到 canvas
+            canvas.add(img);
+        });
+        // 监听鼠标滚轮事件实现缩放
+        canvas.on('mouse:wheel', function (event) {
+            var delta = event.e.deltaY;
+            var zoom = canvas.getZoom();
+            zoom *= 1 + delta / 1000;
+            canvas.setZoom(zoom);
+            console.log(event);
+            event.e.preventDefault();
+            event.e.stopPropagation();
+        });
+    </script>
+</body>
+
+</html>

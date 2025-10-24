@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta test="12">
+    <title>Reactive</title>
+</head>
+
+<body>
+    <script>
+        const map = {
+            "[object Boolean]": "boolean",
+            "[object Number]": "number",
+            "[object String]": "string",
+            "[object Function]": "function",
+            "[object Array]": "array",
+            "[object Date]": "date",
+            "[object RegExp]": "regExp",
+            "[object Undefined]": "undefined",
+            "[object Null]": "null",
+            "[object Object]": "object",
+        };
+        function inspectOf(value, type) {
+            return map[Object.prototype.toString.call(value)] === type;
+        }
+
+        const ProxyFlags = {
+            IS_PROXY: "__micore_isProxy"
+        }
+
+        function isReactive(value) {
+            return !!value[ProxyFlags.IS_PROXY];
+        }
+
+        function proxy(value, handler) {
+            if (!inspectOf(value, "object")) {
+                return value;
+            }
+            if (isReactive(value)) {
+                return value;
+            }
+            return new Proxy(value, {
+                get: (target, key, receiver) => {
+                    if (key === ProxyFlags["IS_PROXY"]) {
+                        return true;
+                    }
+                    const res = Reflect.get(target, key, receiver);
+                    if (inspectOf(res, "object")) {
+                        return proxy(res, handler);
+                    }
+                    return res;
+                },
+                set: (target, key, value, receiver) => {
+                    console.log("set: ", target, key, value, receiver);
+                    return Reflect.set(target, key, value, receiver);
+                }
+            });
+        }
+
+        function reactive(value, handler) {
+            return proxy(value, handler);
+        }
+
+        const user = {
+            name: "zhangsan",
+            age: 18,
+            address: {
+                city: "nanj",
+                school: "xiaoxue"
+            }
+        }
+
+        const u = reactive(user);
+        console.log(u.address.city);
+        u.address.city = "jiangsu";
+        console.log(u);
+    </script>
+</body>
+
+</html>

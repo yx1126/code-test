@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rotate</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * 线上运行地址
+         * @see https://sandcastle.cesium.com/
+        */
+        const url = "https://img2.baidu.com/it/u=1060776065,3752478689&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=616";
+
+        const viewer = new Cesium.Viewer("cesiumContainer");
+
+        let time = 0;
+        // 图片宽度
+        const width = 45;
+
+        const entity = viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(118.76032108469579, 32.044948374379864),
+            billboard: {
+                image: url,
+                height: 65,
+                scale: 0.9,
+                show: true,
+                width: new Cesium.CallbackProperty(function () {
+                    time += 0.08; // 控制速度
+                    return Math.abs(Math.sin(time)) * width + 1;
+                }, false)
+            }
+        });
+
+        viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(118.76032108469579, 32.044948374379864, 250),
+            duration: 0.1
+        });
+
+
+    </script>
+</body>
+
+</html>

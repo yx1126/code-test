@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        div {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #000;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <canvas id="canvas" width="100%" height="100%"></canvas>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const canvas = document.getElementById("canvas");
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const ctx = canvas.getContext("2d");
+            function move(e) {
+                const rect = canvas.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                if (x >= 0 && x <= (rect.left + rect.width) && y >= 0 && y <= (rect.top + rect.height)) {
+                    ctx.lineTo(x, y);
+                    ctx.stroke();
+                } else {
+                    ctx.beginPath();
+                }
+            }
+            function mouseenter() {
+                ctx.beginPath();
+            }
+            function mouseleave() {
+                ctx.beginPath();
+            }
+            canvas.addEventListener("mousedown", (e) => {
+                ctx.beginPath();
+                // ctx.lineWidth = 20;
+                const rect = e.target.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                ctx.moveTo(x, y);
+                document.addEventListener("mousemove", move);
+                // canvas.addEventListener("mouseleave", mouseleave)
+                // canvas.addEventListener("mouseleave", mouseleave)
+            })
+            // canvas.addEventListener("mouseup", () => {
+            //     canvas.removeEventListener("mousemove", move);
+            //     canvas.removeEventListener("mouseenter", mouseenter);
+            // })
+            document.addEventListener("mouseup", () => {
+                document.removeEventListener("mousemove", move);
+                // canvas.removeEventListener("mouseleave", mouseleave);
+            })
+        }
+    </script>
+</body>
+
+</html>

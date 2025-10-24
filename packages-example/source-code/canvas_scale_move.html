@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        .canvas-box {
+            width: 1200px;
+            height: 600px;
+            border: 1px dotted red;
+            margin: 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <button id="reset">重置</button>
+    </div>
+    <div style="height: 150px;" align="center">
+        <div class="translate" style="line-height: 20px;"></div>
+        <div class="scale" style="line-height: 20px;"></div>
+    </div>
+    <div class="canvas-box">
+        <canvas id="canvas" width="1200" height="600"></canvas>
+    </div>
+    <script>
+        const translateBox = document.querySelector(".translate");
+        const scaleBox = document.querySelector(".scale");
+        const reset = document.getElementById("reset");
+
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        const MAX_SCALE = 2, MIN_SCALE = 0.5;
+        let scale = 1,
+            step = 0.05;
+        let image;
+
+        function drawImage(url) {
+            if (image) {
+                ctx.drawImage(image, 0, 0);
+            } else {
+                image = new Image();
+                image.src = "https://newoss.zhulong.com/tfs/pic/v1/tfs/T1NDY_B4Lv1RCvBVdK.jpg";
+                image.onload = () => {
+                    ctx.drawImage(image, 0, 0);
+                }
+                // image.onerror = () => { }
+            }
+        }
+        drawImage();
+        function onMousedown(event) {
+            if (event.button === 0) {
+                onMouseLeftEvent(event);
+            } else if (event.button === 2) {
+                onClickEvent(event);
+            }
+        }
+        // 鼠标左键事件
+        function onMouseLeftEvent(dEvent) {
+            // x 轴距离 y 轴距离
+            const { e: offsetX, f: offsetY } = ctx.getTransform();
+            function onMousemove(event) {
+                const transformX = (offsetX + (event.offsetX - dEvent.offsetX));
+                const transformY = (offsetY + (event.offsetY - dEvent.offsetY));
+                canvas.setAttribute("width", canvas.getAttribute("width"));
+                translateBox.textContent = `${transformX}:${transformY}`;
+                ctx.setTransform(scale, 0, 0, scale, transformX, transformY);
+                drawImage();
+            }
+            function onMouseup() {
+                canvas.removeEventListener("mousemove", onMousemove);
+                canvas.removeEventListener("mouseup", onMouseup);
+            }
+            canvas.addEventListener("mousemove", onMousemove);
+            canvas.addEventListener("mouseup", onMouseup);
+            canvas.addEventListener("mouseleave", onMouseup);
+        }
+
+        canvas.addEventListener("mousedown", onMousedown);
+        canvas.addEventListener("contextmenu", e => e.preventDefault());
+        function initScaleEvent(target, fn) {
+            if (target.addEventListener) {
+                target.addEventListener("wheel", fn);
+            } else if (targcet.attachEvent) {
+                target.attachEvent("onmousewheel", fn);
+            } else {
+                target.onmousewheel = fn;
+            }
+        }
+        initScaleEvent(canvas, (e) => {
+            e.preventDefault();
+            let preScale = scale;
+            if (e.deltaY > 0) {
+                scale = Math.max(MIN_SCALE, scale - step);
+            } else {
+                scale = Math.min(MAX_SCALE, scale + step);
+            }
+            const { e: eOffsetX, f: fOffsetY } = ctx.getTransform();
+            canvas.setAttribute("width", canvas.getAttribute("width"));
+            const offsetX = e.offsetX - ((e.offsetX - eOffsetX) * scale) / preScale;
+            const offsetY = e.offsetY - ((e.offsetY - fOffsetY) * scale) / preScale;
+            ctx.setTransform(scale, 0, 0, scale, offsetX, offsetY);
+            drawImage();
+        })
+        function onClickEvent(e) {
+            const { e: eOffsetX, f: fOffsetY } = ctx.getTransform();
+            const width = image.width * scale;
+            const height = image.height * scale;
+            const offsetX = e.offsetX - eOffsetX;
+            const offsetY = e.offsetY - fOffsetY;
+            if (offsetX >= 0 && offsetX <= width && offsetY >= 0 && offsetY <= height) {
+                alert("打点");
+            }
+        }
+    </script>
+</body>
+
+
+</html>

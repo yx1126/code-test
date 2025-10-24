@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #maps {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="maps"></div>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/13.2.0/math.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/ol@v10.2.1/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.2.1/ol.css">
+    <script src="./data.js"></script>
+    <script>
+        const map = new ol.Map({
+            target: "maps",
+            layers: [
+                new ol.layer.Tile({
+                    title: "天地图影像",
+                    visible: true,
+                    crossOrigin: 'anonymous',
+                    wrapX: true,
+                    source: new ol.source.XYZ({
+                        // url: `http://t4.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=${this.token}`,//天地图在线
+                        url: `http://218.85.143.2:9080/MapTile?type=TiandituSatellite&x={x}&y={y}&z={z}`,//天地图在线
+                        zIndex: 1,
+                        tileLoadFunction: (imageTile, src) => {
+                            let img = new Image()//
+                            img.crossOrigin = ''// 设置图片不从缓存取，从缓存取可能会出现跨域，导致加载失败
+                            img.setAttribute('crossOrigin', 'anonymous')
+                            img.onload = () => {
+                                let canvas = document.createElement('canvas')
+                                let w = img.width
+                                let h = img.height
+                                canvas.width = w
+                                canvas.height = h
+                                let context = canvas.getContext('2d')
+                                context.drawImage(img, 0, 0, w, h, 0, 0, w, h)
+                                imageTile.getImage().src = canvas.toDataURL('image/png')
+                            },
+                                img.onerror = () => {
+                                    console.log("errror");
+                                }
+                            img.src = src
+                        },
+                    }),
+                }),
+            ],
+            view: new ol.View({
+                projection: ol.proj.get("EPSG:4326"), //默认是EPSG:3857
+                center: [118.779042, 32.053184], //openlayers中的经纬度天地图珠江路地铁站
+                zoom: 12,
+                maxZoom: 18, // 最大缩放级别
+                minZoom: 11, // 最小缩放级别
+            }),
+            //加载控件到地图容器中
+            controls: ol.control.defaults.defaults({
+                // 禁止缩放 去除放大缩小按钮
+                zoom: true,
+                rotate: true,
+                attribution: true,
+            }),
+        });
+        const { Feature } = ol;
+        const Point = ol.geom.Point
+        const LineString = ol.geom.LineString
+        const VectorLayer = ol.layer.Vector
+        const VectorSource = ol.source.Vector
+        const { Style, Icon, Stroke } = ol.style
+        const lineMarker = [];
+        points.forEach((item) => {
+            const ptsArray = [];
+            item.forEach(point => {
+                ptsArray.push(point);
+            })
+            lineMarker.push(new Feature({
+                type: 'route',
+                geometry: new LineString(ptsArray),
+            }))//添加轨迹线
+        })
+        const styles = {
+            'route': new Style({
+                stroke: new Stroke({
+                    width: 4,
+                    color: "#4320BE",
+                })
+            }),
+        }
+        const source = new VectorSource({
+            type: "LineString",
+            features: lineMarker
+        })
+        const carLineLayer = new VectorLayer({
+            source: source,
+            style: function (feature) {
+                return styles[feature.get('type')]
+            }
+        })
+        map.addLayer(carLineLayer);
+    </script>
+</body>
+
+</html>

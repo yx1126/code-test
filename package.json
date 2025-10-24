@@ -1,0 +1,24 @@
+{
+    "name": "code-test",
+    "type": "module",
+    "private": true,
+    "description": "example for myself",
+    "keywords": ["test", "vue", "html", "css", "scss", "ol", "openlayer", "echarts"],
+    "license": "MIT",
+    "author": "yx1126",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "inspector": "npx @eslint/config-inspector@latest"
+    },
+    "dependencies": {
+        "lodash-es": "^4.17.21",
+        "vue": "^3.5.21"
+    },
+    "devDependencies": {
+        "@types/lodash-es": "^4.17.12",
+        "@yx1126/lint-config": "^0.0.26",
+        "eslint": "^9.38.0"
+    }
+}
