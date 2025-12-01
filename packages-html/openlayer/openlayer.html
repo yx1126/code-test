@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.5.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@10.5.0/dist/ol.js"></script>
+    <script src="../datas/data.js"></script>
+    <style>
+        html,
+        body,
+        #map {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+        const Map = ol.Map;
+        const View = ol.View;
+        const VectorSource = ol.source.Vector;
+        const VectorLayer = ol.layer.Vector;
+        const getProj = ol.proj.get;
+        const GeoJSON = ol.format.GeoJSON;
+        const LineString = ol.geom.LineString;
+        const Feature = ol.Feature;
+        const Point = ol.geom.Point;
+
+        const { Style, Icon, Fill, Stroke } = ol.style;;
+
+
+        const projection = getProj("EPSG:4326");
+        window.onload = async () => {
+            ol.proj.useGeographic();
+            const geojson = await fetch("../datas/jiangsu.json").then(res => res.json())
+            console.log(geojson);
+            const map = new Map({
+                projection,
+                target: 'map',
+                layers: [
+                    renderShadow(geojson)
+                ],
+                view: new View({
+                    // 设置地图初始中心点（取第一个点）
+                    center: [118.94099193042679, 33.53544132716329],
+                    // 初始缩放级别
+                    zoom: 5.5
+                })
+            });
+            renderPoints(map);
+        }
+
+        function renderPoints(map) {
+            const points = [
+                [116.3972, 39.9075],   // 北京天安门
+                [117.2009, 39.0842],   // 天津
+                [118.0151, 39.8948],   // 唐山
+                [119.6424, 39.9142],   // 秦皇岛
+                [121.4737, 31.2304]    // 上海
+            ];
+            const lineString = new LineString(points);
+            const lineFeature = new Feature({
+                geometry: lineString,
+                color: "red",
+            });
+            const vectorSource = new VectorSource({
+                features: [lineFeature], // 放入轨迹要素
+            });
+            const layer = new VectorLayer({
+                source: vectorSource,
+                zIndex: 3,
+                style: feature => {
+                    return new Style({
+                        stroke: new Stroke({
+                            color: feature.get("color"),
+                            width: 15,
+                            // lineCap: "butt", // 两端平切（不圆弧）
+                            // lineJoin: "round",
+                        }),
+                    });
+                },
+            });
+            map.addLayer(layer);
+        }
+
+        function renderShadow(geoJson) {
+            const features = new GeoJSON({
+                featureProjection: "EPSG:4326",
+            }).readFeatures(geoJson);
+            // 阴影
+            const shadowSource = new VectorSource({
+                features,
+            });
+            // 阴影图层样式
+            const shadowStyle = new Style({
+                fill: new Fill({
+                    color: "rgb(31, 103, 190)",
+                }),
+                geometry: feature => {
+                    const geom = feature.getGeometry()?.clone();
+                    if (geom) {
+                        geom.translate(0, -0.1); // X 正右，Y 正上；你可调整偏移量
+                    }
+                    return geom;
+                },
+            });
+            // 创建阴影图层（偏移）
+            const shadowLayer = new VectorLayer({
+                source: shadowSource,
+                style: shadowStyle,
+                opacity: 1,
+                zIndex: 1,
+            });
+            return shadowLayer;
+        };
+
+    </script>
+</body>
+
+</html>

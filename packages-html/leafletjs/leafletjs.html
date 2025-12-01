@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            font-weight: normal;
+        }
+    </style>
+    <script src="../datas/data.js"></script>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script>
+        window.onload = async () => {
+            console.log(healthList);
+            const map = L.map('map')
+            map.setView([33.53544132716329, 118.94099193042679], 7.5);
+            const geojson = await fetch("../datas/jiangsu.json").then(res => res.json())
+            L.geoJSON(geojson).addTo(map);
+            healthList.forEach(item => {
+                const points = item.points.map(v => v.reverse());
+                const polyline = L.polyline(points, {
+                    color: item.color || 'rgba(0,128,0,0.8)',
+                    weight: 10,
+                }).addTo(map);
+            })
+        }
+    </script>
+    <style>
+        #map {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</body>
+
+</html>

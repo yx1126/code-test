@@ -1,39 +1,17 @@
-$theme-modes: (light, inverted, dark);
+@use "sass:list";
 
-@mixin border($type, $color) {
-    position: relative;
+$dataList: ((479, 1504, 1), (2, 3, 3), (4, 5, 175), (479, 1504, 175), (479, 1504, 175), (479, 1504, 175), (479, 1504, 175), (479, 1504, 175), (479, 1504, 175), (479, 1504, 175));
 
-    &::after {
-        content: "";
-        position: absolute;
-        background-color: $color;
-
-        @if $type==top {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-        } @else if $type==right {
-            top: 0;
-            right: 0;
-            width: 1px;
-            height: 100%;
-        } @else if $type==bottom {
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-        } @else if $type==left {
-            top: 0;
-            left: 0;
-            width: 1px;
-            height: 100%;
+.test {
+    @for $i from 1 through 10 {
+        $item: list.nth($dataList, $i);
+        &:nth-child(#{$i}) {
+            top: list.nth($item, 1) + px;
+            left: list.nth($item, 2) + px;
+            &::after {
+                background-image: url("@/assets/dashboard/screen-icon#{$i}.png");
+                top: list.nth($item, 3) + px;
+            }
         }
-    }
-}
-
-@each $v in top, right, bottom, left {
-    .color-#{$v} {
-        @include border($v, red);
     }
 }
