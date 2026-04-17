@@ -1,52 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>竖向排列文字滚动</title>
+    <style>
+        /* 滚动容器 */
+        .vertical-scroll-box {
+            width: 40px;
+            /* 竖排文字宽度 */
+            height: 200px;
+            /* 滚动区域高度 */
+            overflow: hidden;
+            /* 隐藏超出部分 */
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+
+        /* 文字竖排 + 滚动动画 */
+        .vertical-text {
+            writing-mode: vertical-rl;
+            /* 竖向排列：从上到下、从右到左 */
+            white-space: nowrap;
+            /* 不换行 */
+            animation: scroll 6s linear infinite;
+            /* 滚动动画 */
+        }
+
+        /* 滚动关键帧：上下滚动 */
+        @keyframes scroll {
+            0% {
+                transform: translateY(100%);
+            }
+
+            /* 从底部开始 */
+            100% {
+                transform: translateY(-100%);
+            }
+
+            /* 滚到顶部 */
+        }
+    </style>
 </head>
 
 <body>
-    <div class="card-filp">
-        <div class="back"></div>
-        <div class="front"></div>
+    <div class="vertical-scroll-box">
+        <div class="vertical-text">这里是竖向排列的滚动文字</div>
     </div>
-    <style>
-        .card-filp {
-            height: 200px;
-            width: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: 1s;
-        }
-
-        .front,
-        .back {
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            left: 0;
-            top: 0;
-            backface-visibility: hidden
-        }
-
-        .front {
-            background: lightgreen;
-        }
-
-        .back {
-            background: lightblue;
-        }
-
-        .back {
-            transform: rotateY(180deg);
-        }
-
-        .card-filp:hover {
-            transform: rotateY(180deg);
-        }
-    </style>
 </body>
 
 </html>

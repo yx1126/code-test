@@ -34,7 +34,6 @@ export default defineEslint({
         },
     },
     rules: {
-        // 自定义块问题
         "@stylistic/eol-last": "off",
         "no-console": "off",
         "@typescript-eslint/no-unused-vars": "off",
@@ -55,6 +54,10 @@ export default defineEslint({
         files: ["**/*.vue"],
         rules: {
             "@typescript-eslint/no-unsafe-unary-minus": "off",
+        },
+    }, {
+        rules: {
+            "no-case-declarations": "off",
         },
     }],
 });

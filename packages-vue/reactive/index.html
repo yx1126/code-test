@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        import { reactive, effect, computed, watch } from './main.js';
+        const data = reactive({
+            foo: 1,
+            bar: 2
+        })
+        // effect(() => {
+        //     console.log(data.foo);
+        // }, {
+        //     scheduler(fn) {
+        //         setTimeout(fn);
+        //     }
+        // })
+        // data.foo++;
+        // console.log("结束了");
+        // const sum = computed(() => {
+        //     return data.foo + data.bar;
+        // });
+        // effect(() => {
+        //     console.log(sum.value);
+        // })
+        // watch(() => data.foo, (newValue, oldValue, onCleanup) => {
+        //     onCleanup(() => {
+        //         console.log("clear");
+        //     })
+        //     console.log(newValue, oldValue);
+        // }, {
+        //     immediate: true
+        // })
+        // data.foo++;
+        console.log(performance, performance.now());
+    </script>
+</body>
+
+</html>
